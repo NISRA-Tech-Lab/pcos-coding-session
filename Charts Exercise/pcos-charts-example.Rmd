@@ -1,0 +1,157 @@
+---
+title: "PCOS Charts Example"
+lang: "en"
+output:
+  rmarkdown::html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    css: "style.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, echo = FALSE, warning = FALSE, out.width = "100%", fig.height = 4
+)
+
+source("data_prep.R")
+```
+
+## 1. Awareness of NISRA
+
+### Current year, `r current_year`
+
+Just under half of respondents (`r heard_of_nisra`%) said they had heard of NISRA before being contacted about the survey.
+
+### Comparison over time
+
+Although there has been a decrease since 2020 and 2021, awareness of NISRA in 2022 is notably higher than in 2019 (35%) and previous years, before the start of the COVID-19 pandemic (Chart 1).
+
+#### Chart 1: Awareness of NISRA (2009-`r current_year`)
+
+```{r Chart 1}
+plot_ly(aware_nisra_data,
+  x = ~year,
+  y = ~pct,
+  type = "scatter",
+  mode = "lines+markers",
+  text = ~ paste0(year, ": ", round_half_up(pct), "%"),
+  marker = list(
+    size = 8,
+    color = "#00205b"
+  ),
+  line = list(
+    width = 4,
+    color = "#00205b"
+  ),
+  hoverinfo = "text",
+  name = "Awareness of NISRA"
+) %>%
+  add_annotations(
+    x = ~ year + 0.1,
+    y = ~ pct - 3,
+    yanchor = "top",
+    text = ~ paste0("<b>", round_half_up(pct), "%</b>"),
+    showarrow = FALSE,
+    font = list(color = "#00205b")
+  ) %>%
+  layout(
+    showlegend = TRUE,
+    legend = list(
+      x = 0.5,
+      xanchor = "center",
+      xref = "paper",
+      y = -0.1,
+      yref = "paper",
+      yanchor = "top"
+    ),
+    font = list(family = "Arial", size = 12),
+    xaxis = list(
+      title = "",
+      showline = TRUE,
+      linecolor = "#000000",
+      showgrid = FALSE,
+      showticklabels = TRUE,
+      ticks = "outside",
+      tickwidth = 1,
+      tickvals = ~ (min(year):max(year)),
+      tickmode = "array",
+      fixedrange = TRUE
+    ),
+    yaxis = list(
+      title = "",
+      showline = TRUE,
+      range = c(0, 100),
+      linecolor = "#000000",
+      showgrid = FALSE,
+      fixedrange = TRUE
+    ),
+    annotations = list(
+      list(
+        text = "Percentage",
+        x = 0,
+        xref = "paper",
+        xanchor = "center",
+        y = 1.05,
+        yref = "paper",
+        yanchor = "bottom",
+        showarrow = FALSE
+      )
+    ),
+    margin = list(t = 50),
+    hovermode = "x unified"
+  ) %>%
+  config(displayModeBar = FALSE)
+```
+
+### Comparison by age group
+
+Awareness of NISRA was `r aware_youngest`% among the youngest age group polled (those aged 16 to 24) and `r aware_oldest`% among the oldest age group (aged 75 and over).
+
+#### Chart 2: Awareness of NISRA by Age Group, `r current_year`
+
+```{r Chart 2}
+plot_ly(aware_by_age,
+  x = ~AGE2,
+  y = ~pct,
+  type = "bar",
+  name = "Age Group",
+  marker = list(color = "#00205b"),
+  hovertext = ~ paste0(AGE2, ": ", round_half_up(pct), "%"),
+  hoverinfo = "name+text",
+  texttemplate = "<b>%{y:.0f}</b>",
+  textposition = "inside",
+  insidetextanchor = "middle"
+) %>%
+  layout(
+    font = list(family = "Arial", size = 12),
+    legend = list(
+      orientation = "h",
+      x = 0.5,
+      y = -0.05,
+      xanchor = "center"
+    ),
+    yaxis = list(
+      title = "",
+      range = c(0, 100),
+      showline = TRUE,
+      fixedrange = TRUE
+    ),
+    xaxis = list(
+      title = "",
+      fixedrange = TRUE
+    ),
+    annotations = list(
+      text = "Percentage",
+      x = 0,
+      xref = "paper",
+      xanchor = "center",
+      y = 1.05,
+      yref = "paper",
+      yanchor = "bottom",
+      showarrow = FALSE
+    ),
+    margin = list(t = 50)
+  ) %>%
+  config(displayModeBar = FALSE)
+```
