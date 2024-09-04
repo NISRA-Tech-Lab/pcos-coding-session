@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   message = FALSE, echo = FALSE, warning = FALSE, out.width = "100%", fig.height = 4
 )
 
-source("data_prep_solution.R")
+source("data_prep_exercise.R")
 ```
 
 ## 1. Awareness of NISRA
