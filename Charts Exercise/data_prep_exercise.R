@@ -1,7 +1,13 @@
-if (!require(pacman)) install.packages("pacman")
-library(pacman)
 
-p_load("dplyr", "plotly", "janitor")
+if (!require(dplyr)) install.packages("dplyr")
+library(dplyr)
+
+if (!require(plotly)) install.packages("plotly")
+library(plotly)
+
+if (!require(janitor)) install.packages("janitor")
+library(janitor)
+
 
 current_year <- 2022
 # Change to your remote data folder location
