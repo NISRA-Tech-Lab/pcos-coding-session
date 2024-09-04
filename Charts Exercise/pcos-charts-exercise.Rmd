@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   message = FALSE, echo = FALSE, warning = FALSE, out.width = "100%", fig.height = 4
 )
 
-source("data_prep.R")
+source("data_prep_solution.R")
 ```
 
 ## 1. Awareness of NISRA
@@ -111,47 +111,52 @@ Awareness of NISRA was `r aware_youngest`% among the youngest age group polled (
 #### Chart 2: Awareness of NISRA by Age Group, `r current_year`
 
 ```{r Chart 2}
-plot_ly(aware_by_age,
-  x = ~AGE2,
-  y = ~pct,
-  type = "bar",
-  name = "Age Group",
-  marker = list(color = "#00205b"),
-  hovertext = ~ paste0(AGE2, ": ", round_half_up(pct), "%"),
-  hoverinfo = "name+text",
-  texttemplate = "<b>%{y:.0f}</b>",
-  textposition = "inside",
-  insidetextanchor = "middle"
-) %>%
-  layout(
-    font = list(family = "Arial", size = 12),
-    legend = list(
-      orientation = "h",
-      x = 0.5,
-      y = -0.05,
-      xanchor = "center"
-    ),
-    yaxis = list(
-      title = "",
-      range = c(0, 100),
-      showline = TRUE,
-      fixedrange = TRUE
-    ),
-    xaxis = list(
-      title = "",
-      fixedrange = TRUE
-    ),
-    annotations = list(
-      text = "Percentage",
-      x = 0,
-      xref = "paper",
-      xanchor = "center",
-      y = 1.05,
-      yref = "paper",
-      yanchor = "bottom",
-      showarrow = FALSE
-    ),
-    margin = list(t = 50)
-  ) %>%
-  config(displayModeBar = FALSE)
+
+# Exercise 1b
+# The exercise uses the plot_ly library to create the html chart
+# More information here: https://plotly.com/r/ (Ctrl + click link to follow)
+
+# 1. Run plot_ly() on the aware_by_age data frame with AGE2 on x axis and pct on y axis
+# 2. Set type to "bar"
+# 3. Name the series "Age Group"
+# 4. Set the marker colour to #00205b
+# 5. Use the formula `paste0(AGE2, ": ", round_half_up(pct), "%")` to output the hovertext
+# 6. Set hoverinfo to "name+text"
+# 7. Set texttemplate to "<b>%{y:.0f}</b>"
+# 8. Set textposition to "inside"
+# 9. Set insidetextanchor to "middle
+# 10. Uncomment the layout code below
+# 11. Remove the plotly mode bar using `config(displayModeBar = FALSE)`
+ 
+ 
+  # layout(
+  #   font = list(family = "Arial", size = 12),
+  #   legend = list(
+  #     orientation = "h",
+  #     x = 0.5,
+  #     y = -0.05,
+  #     xanchor = "center"
+  #   ),
+  #   yaxis = list(
+  #     title = "",
+  #     range = c(0, 100),
+  #     showline = TRUE,
+  #     fixedrange = TRUE
+  #   ),
+  #   xaxis = list(
+  #     title = "",
+  #     fixedrange = TRUE
+  #   ),
+  #   annotations = list(
+  #     text = "Percentage",
+  #     x = 0,
+  #     xref = "paper",
+  #     xanchor = "center",
+  #     y = 1.05,
+  #     yref = "paper",
+  #     yanchor = "bottom",
+  #     showarrow = FALSE
+  #   ),
+  #   margin = list(t = 50)
+  # ) 
 ```
