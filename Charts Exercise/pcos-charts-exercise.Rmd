@@ -106,7 +106,7 @@ plot_ly(aware_nisra_data,
 
 ### Comparison by age group
 
-Awareness of NISRA was `r aware_youngest`% among the youngest age group polled (those aged 16 to 24) and `r aware_oldest`% among the oldest age group (aged 75 and over).
+Awareness of NISRA was X% among the youngest age group polled (those aged 16 to 24) and Y% among the oldest age group (aged 75 and over).
 
 #### Chart 2: Awareness of NISRA by Age Group, `r current_year`
 
